@@ -8,6 +8,7 @@ namespace KinUsers.Interfaces.Implementations
     {
         public List<EmployeeModel> getEmployees()
         {
+            //string[] continents = {"America, Asia"} 
             IPersistenceRetrieveEmployee mysql = PersistenceRetrieveEmployeeCreator.createConnection("America");
             List<EmployeeModel> mysqlEmployees = mysql.getEmployees();
             IPersistenceRetrieveEmployee postgres = PersistenceRetrieveEmployeeCreator.createConnection("Asia");

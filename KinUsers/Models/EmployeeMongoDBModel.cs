@@ -14,7 +14,7 @@ namespace KinUsers.Models
         [BsonElement("EmployeeId")]
         public long EmployeeId { get; set; }
 
-        [BsonElement("FirsName")]
+        [BsonElement("FirstName")]
         public string FirstName { get; set; }
 
         [BsonElement("LastName")]

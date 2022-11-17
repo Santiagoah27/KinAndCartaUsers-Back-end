@@ -3,6 +3,7 @@ using KinUsers.Models;
 using MySqlConnector;
 using System.Data;
 using MongoDB.Driver;
+using KinUsers.Adapters;
 
 namespace KinUsers.Interfaces.Implementations
 {
@@ -10,20 +11,15 @@ namespace KinUsers.Interfaces.Implementations
     {
         public List<EmployeeModel> getEmployees()
         {
-            //Connection to MySql
-            connectionMongoDB();
-            return new List<EmployeeModel>();
-
+            IMongoDatabase dataBase = connectionMongoDB();
+            return MongoAdapter.MapEmployee(dataBase);
         }
 
-        private static List<EmployeeMongoDBModel> connectionMongoDB()
+        private static IMongoDatabase connectionMongoDB()
         {
             var client = new MongoClient("mongodb://localhost:27018");
             var database = client.GetDatabase("userskin");
-
-            var getTableUsers = database.GetCollection<EmployeeMongoDBModel>("Users");
-            List<EmployeeMongoDBModel> data = getTableUsers.Find(d => true).ToList();
-            return data;
+            return database;
         }
     }
 
