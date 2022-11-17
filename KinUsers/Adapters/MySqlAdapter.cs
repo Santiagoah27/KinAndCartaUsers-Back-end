@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using KinUsers.Models;
+using System.Linq;
 
 namespace KinUsers.Adapters
 {
@@ -9,6 +10,7 @@ namespace KinUsers.Adapters
         public static List<EmployeeModel> MapEmployee(DataSet dataSet)
         {
             List<EmployeeModel> employees = new List<EmployeeModel>();
+
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 var usersMysql = new EmployeeModel();

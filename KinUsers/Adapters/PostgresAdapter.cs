@@ -9,6 +9,7 @@ namespace KinUsers.Adapters
         public static List<EmployeeModel> MapEmployee(DataSet dataSet)
         {
             List<EmployeeModel> employees = new List<EmployeeModel>();
+
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 var usersPostgres = new EmployeeModel();

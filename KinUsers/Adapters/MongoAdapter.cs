@@ -13,21 +13,19 @@ namespace KinUsers.Adapters
             List<EmployeeModel> employees = new List<EmployeeModel>();
             List<EmployeeMongoDBModel> employeesTable = getTableUsers.Find(d => true).ToList();
 
-            foreach (EmployeeMongoDBModel row in employeesTable)
-            {
-                var usersPostgres = new EmployeeModel();
-                usersPostgres = new EmployeeModel();
-                usersPostgres.EmployeeId = (int)row.EmployeeId;
-                usersPostgres.FirstName = row.FirstName;
-                usersPostgres.LastName = row.LastName;
-                usersPostgres.Age = row.Age;
-                usersPostgres.Address = row.Address;
-                usersPostgres.Email = row.Email;
-                usersPostgres.City = row.City;
-                usersPostgres.TimeWorkingInCompany = row.TimeWorkingInCompany;
-                employees.Add(usersPostgres);
-            }
-            return employees;
+           employees = employeesTable.Select(e => new EmployeeModel
+           {
+                EmployeeId = (int)e.EmployeeId,
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                Age = e.Age,
+                Address = e.Address,
+                Email = e.Email,
+                City = e.City,
+                TimeWorkingInCompany = e.TimeWorkingInCompany
+           }).ToList();
+
+        return employees;
         }
     }
 }
