@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5UqcTkfL9kPEumt/g5BuKSUI2OJhK91h6wC66hRCOcsstwCRYJOX9XfTJciJEoRiezfX7+xDkOi3V5y6CUeFAA==",
+  "dgSpecHash": "5OkWFEKRifSy0tg/rz4NiO0XlgDi5r1a53DLweZvz+SmTB9h3qZAZQ+N6X6sxd5Mcy/VqNDpyqeBSnrLgQi7XQ==",
   "success": true,
-  "projectFilePath": "/Users/santiagosah/Projects/KinUsers/KinUsers/KinUsers.csproj",
+  "projectFilePath": "/Users/santiagosah/Projects/KinUsersBack-end/KinUsers/KinUsers.csproj",
   "expectedPackageFiles": [
     "/Users/santiagosah/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/santiagosah/.nuget/packages/microsoft.aspnetcore.openapi/7.0.0/microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
