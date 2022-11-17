@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Net;
+using KinUsers.Adapters;
 using KinUsers.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,20 +16,17 @@ namespace KinUsers.Interfaces.Implementations
     {
             public List<EmployeeModel> getEmployees()
             {
-            //Connection to MySql
-                connectionPostgres();
-                return new List<EmployeeModel>();
-
+               DataSet dataSet = connectionPostgres("SELECT * FROM Users"); 
+               return PostgresAdapter.MapEmployee(dataSet);
             }
 
-    private static List<EmployeePostgresModel> connectionPostgres()
+    private static DataSet connectionPostgres(string query)
     {
             string server = "localhost";
             string bd = "userskin";
             string user = "postgres";
             string password = "password";
             string port = "54320";
-            List<EmployeePostgresModel> data = new List<EmployeePostgresModel>();
 
             string strConnection = $"server={server}; port={port}; user id={user}; password={password}; database={bd};";
 
@@ -36,31 +34,14 @@ namespace KinUsers.Interfaces.Implementations
 
             try
             {
-                string consulta = "SELECT * FROM Users";
-                NpgsqlCommand command = new NpgsqlCommand(consulta);
+                NpgsqlCommand command = new NpgsqlCommand(query);
                 command.Connection = connectionBD;
                 connectionBD.Open();
-                var ds = new DataSet();
-                var da = new NpgsqlDataAdapter(command);
-                da.Fill(ds);
-                var usersPostgres = new EmployeePostgresModel();
+                var dataSet = new DataSet();
+                var dataAdapter = new NpgsqlDataAdapter(command);
+                dataAdapter.Fill(dataSet);
 
-
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    usersPostgres = new EmployeePostgresModel();
-                    usersPostgres.EmployeeId = (int)row["employeeid"];
-                    usersPostgres.FirstName = (string?)row["firstname"];
-                    usersPostgres.LastName = (string?)row["lastname"];
-                    usersPostgres.Age = (int)row["age"];
-                    usersPostgres.Address = (string?)row["address"];
-                    usersPostgres.Email = (string?)row["email"];
-                    usersPostgres.City = (string?)row["city"];
-                    usersPostgres.TimeWorkingInCompany = (int)row["timeworkingincompany"];
-                    data.Add(usersPostgres);
-                }
-
-                return data;
+                return dataSet;
             }
             catch (MySqlException ex)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using KinUsers.Adapters;
 using KinUsers.Models;
 using MySqlConnector;
 
@@ -9,21 +10,17 @@ namespace KinUsers.Interfaces.Implementations
     {
         public List<EmployeeModel> getEmployees()
         {
-            //Connection to MySql
-            List<EmployeeModel> mysqlEmployees = connectionMysql();
-
-            return new List<EmployeeModel>();
-            
+            DataSet dataSet = connectionMysql("SELECT * FROM Users");
+            return MySqlAdapter.MapEmployee(dataSet);
         }
 
-        private static List<EmployeeModel> connectionMysql()
+        private static DataSet connectionMysql(string query)
         {
             string server = "localhost";
             string bd = "userskin";
             string user = "root";
             string password = "password";
             string port = "33060";
-            List<EmployeeModel> employees = new List<EmployeeModel>();
 
             string strConnection = $"server={server}; port={port}; user id={user}; password={password}; database={bd};";
 
@@ -31,38 +28,23 @@ namespace KinUsers.Interfaces.Implementations
 
             try
             {
-                string consulta = "SELECT * FROM Users";
-                MySqlCommand command = new MySqlCommand(consulta);
+                MySqlCommand command = new MySqlCommand(query);
                 command.Connection = connectionBD;
                 connectionBD.Open();
-                var ds = new DataSet();
-                var da = new MySqlDataAdapter(command);
-                da.Fill(ds);
+                var dataSet = new DataSet();
+                var dataAdapter = new MySqlDataAdapter(command);
+                dataAdapter.Fill(dataSet);
 
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    var usersMysql = new EmployeeModel();
-                    usersMysql.EmployeeId = (int)row["EmployeeId"];
-                    usersMysql.FirstName = (string?)row["FirstName"];
-                    usersMysql.LastName = (string?)row["LastName"];
-                    usersMysql.Age = (int)row["Age"];
-                    usersMysql.Address = (string?)row["Address"];
-                    usersMysql.Email = (string?)row["Email"];
-                    usersMysql.City = (string?)row["City"];
-                    usersMysql.TimeWorkingInCompany = (int)row["TimeWorkingInCompany"];
-                    employees.Add(usersMysql);
-                }
-
-                return employees; //Imprime en cuadro de dialogo el resultado
+                return dataSet;
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.Message); //Si existe un error aquí muestra el mensaje
+                Console.WriteLine(ex.Message);
                 throw;
             }
             finally
             {
-                connectionBD.Close(); //Cierra la conexión a MySQL
+                connectionBD.Close();
             }
         }
 
