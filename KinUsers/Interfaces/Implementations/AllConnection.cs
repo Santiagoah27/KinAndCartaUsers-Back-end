@@ -8,14 +8,17 @@ namespace KinUsers.Interfaces.Implementations
     {
         public List<EmployeeModel> getEmployees()
         {
-            //string[] continents = {"America, Asia"} 
-            IPersistenceRetrieveEmployee mysql = PersistenceRetrieveEmployeeCreator.createConnection("America");
-            List<EmployeeModel> mysqlEmployees = mysql.getEmployees();
-            IPersistenceRetrieveEmployee postgres = PersistenceRetrieveEmployeeCreator.createConnection("Asia");
-            List<EmployeeModel> postgresEmployees = postgres.getEmployees();
-            IPersistenceRetrieveEmployee mongo = PersistenceRetrieveEmployeeCreator.createConnection("Europa");
-            List<EmployeeModel> mongoEmployees = mongo.getEmployees();
-            return (List<EmployeeModel>)mysqlEmployees.Concat(postgresEmployees).Concat(mongoEmployees);
+            string[] continents = { "America", "Asia", "Europa" };
+            List<EmployeeModel> employees = new List<EmployeeModel>();
+
+            foreach (var item in continents)
+            {
+                IPersistenceRetrieveEmployee db = PersistenceRetrieveEmployeeCreator.createConnection(item);
+                List<EmployeeModel> dbEmployess = db.getEmployees();
+                employees.AddRange(dbEmployess);
+            }
+
+            return employees;
         }
 
     }
