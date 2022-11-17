@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>c2cf9b8e-1c63-4c75-b21b-e3fcee9f167c</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
@@ -11,6 +13,24 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="MySqlConnector" Version="2.2.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="MySqlConnector" />
+    <None Remove="Factories\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Interfaces\Implementations\" />
+    <None Remove="Services\" />
+    <None Remove="MongoDB.Driver" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Factories\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Implementations\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>
