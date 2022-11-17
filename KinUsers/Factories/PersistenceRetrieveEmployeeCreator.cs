@@ -11,6 +11,8 @@ namespace KinUsers.Factories
             {
                 case "America":
                     return new MySQLImplementation();
+                case "Europa":
+                    return new MongoDBImplementation();
                 default:
                     return new MySQLImplementation();
             }
