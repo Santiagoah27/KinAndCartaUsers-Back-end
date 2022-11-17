@@ -27,6 +27,7 @@
     <None Remove="Services\" />
     <None Remove="MongoDB.Driver" />
     <None Remove="Npgsql" />
+    <None Remove="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -34,5 +35,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Interfaces\Implementations\" />
     <Folder Include="Services\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
 </Project>

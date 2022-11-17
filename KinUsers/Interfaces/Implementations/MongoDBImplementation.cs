@@ -16,14 +16,14 @@ namespace KinUsers.Interfaces.Implementations
 
         }
 
-        private void connectionMongoDB()
+        private static List<EmployeeMongoDBModel> connectionMongoDB()
         {
             var client = new MongoClient("mongodb://localhost:27018");
             var database = client.GetDatabase("userskin");
 
             var getTableUsers = database.GetCollection<EmployeeMongoDBModel>("Users");
             List<EmployeeMongoDBModel> data = getTableUsers.Find(d => true).ToList();
-            Console.WriteLine(data);
+            return data;
         }
     }
 

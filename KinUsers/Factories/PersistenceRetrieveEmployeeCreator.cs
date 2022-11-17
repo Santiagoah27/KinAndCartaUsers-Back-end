@@ -16,7 +16,7 @@ namespace KinUsers.Factories
                 case "Europa":
                     return new MongoDBImplementation();
                 default:
-                    return new MySQLImplementation();
+                    return new AllConnection();
             }
         }
     }

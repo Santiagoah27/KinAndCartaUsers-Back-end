@@ -21,7 +21,7 @@ namespace KinUsers.Interfaces.Implementations
 
             }
 
-    private void connectionPostgres()
+    private static List<EmployeePostgresModel> connectionPostgres()
     {
             string server = "localhost";
             string bd = "userskin";
@@ -30,13 +30,10 @@ namespace KinUsers.Interfaces.Implementations
             string port = "54320";
             List<EmployeePostgresModel> data = new List<EmployeePostgresModel>();
 
-            //Crearemos la cadena de conexión concatenando las variables
             string strConnection = $"server={server}; port={port}; user id={user}; password={password}; database={bd};";
 
-            //Instancia para conexión a MySQL, recibe la cadena de conexión
             NpgsqlConnection connectionBD = new NpgsqlConnection(strConnection);
 
-            //Agregamos try-catch para capturar posibles errores de conexión o sintaxis.
             try
             {
                 string consulta = "SELECT * FROM Users";
@@ -63,15 +60,16 @@ namespace KinUsers.Interfaces.Implementations
                     data.Add(usersPostgres);
                 }
 
-                Console.WriteLine(data); //Imprime en cuadro de dialogo el resultado
+                return data;
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.Message); //Si existe un error aquí muestra el mensaje
+                Console.WriteLine(ex.Message);
+                throw;
             }
             finally
             {
-                connectionBD.Close(); //Cierra la conexión a MySQL
+                connectionBD.Close();
             }
         }
     }

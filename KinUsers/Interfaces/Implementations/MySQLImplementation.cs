@@ -10,27 +10,25 @@ namespace KinUsers.Interfaces.Implementations
         public List<EmployeeModel> getEmployees()
         {
             //Connection to MySql
-            connectionMysql();
+            List<EmployeeModel> mysqlEmployees = connectionMysql();
+
             return new List<EmployeeModel>();
             
         }
 
-        private void connectionMysql()
+        private static List<EmployeeModel> connectionMysql()
         {
             string server = "localhost";
             string bd = "userskin";
             string user = "root";
             string password = "password";
             string port = "33060";
-            List<EmployeeMySQLModel> data = new List<EmployeeMySQLModel>();
+            List<EmployeeModel> employees = new List<EmployeeModel>();
 
-            //Crearemos la cadena de conexión concatenando las variables
             string strConnection = $"server={server}; port={port}; user id={user}; password={password}; database={bd};";
 
-            //Instancia para conexión a MySQL, recibe la cadena de conexión
             MySqlConnection connectionBD = new MySqlConnection(strConnection);
 
-            //Agregamos try-catch para capturar posibles errores de conexión o sintaxis.
             try
             {
                 string consulta = "SELECT * FROM Users";
@@ -40,12 +38,10 @@ namespace KinUsers.Interfaces.Implementations
                 var ds = new DataSet();
                 var da = new MySqlDataAdapter(command);
                 da.Fill(ds);
-                var usersMysql = new EmployeeMySQLModel();
-
 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    usersMysql = new EmployeeMySQLModel();
+                    var usersMysql = new EmployeeModel();
                     usersMysql.EmployeeId = (int)row["EmployeeId"];
                     usersMysql.FirstName = (string?)row["FirstName"];
                     usersMysql.LastName = (string?)row["LastName"];
@@ -54,14 +50,15 @@ namespace KinUsers.Interfaces.Implementations
                     usersMysql.Email = (string?)row["Email"];
                     usersMysql.City = (string?)row["City"];
                     usersMysql.TimeWorkingInCompany = (int)row["TimeWorkingInCompany"];
-                    data.Add(usersMysql);
+                    employees.Add(usersMysql);
                 }
 
-                Console.WriteLine(data); //Imprime en cuadro de dialogo el resultado
+                return employees; //Imprime en cuadro de dialogo el resultado
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message); //Si existe un error aquí muestra el mensaje
+                throw;
             }
             finally
             {
