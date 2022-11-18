@@ -22,7 +22,8 @@ namespace KinUsers.Interfaces.Implementations
 
         public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
         {
-            throw new NotImplementedException();
+            DataSet dataSet = connectionPostgres($"SELECT * FROM Users WHERE employeeid = {Id}");
+            return PostgresAdapter.MapEmployee(dataSet);
         }
 
         private static DataSet connectionPostgres(string query)
