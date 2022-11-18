@@ -21,6 +21,24 @@ namespace KinUsers.Interfaces.Implementations
             return employees;
         }
 
+        public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
+        {
+            string[] continents = { "America", "Asia", "Europa" };
+            List<EmployeeModel> employees = new List<EmployeeModel>();
+            foreach (var item in continents)
+            {
+                IPersistenceRetrieveEmployee db = PersistenceRetrieveEmployeeCreator.createConnection(item);
+                List<EmployeeModel> dbEmployess = db.getEmployeeByIdAndRegion(Id);
+                if (dbEmployess.Count() > 0)
+                {
+                    employees.AddRange(dbEmployess);
+                    return employees;
+                }               
+            }
+
+            return employees;
+        }
+
     }
 }
 

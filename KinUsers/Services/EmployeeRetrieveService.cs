@@ -12,6 +12,13 @@ namespace KinUsers.Services
 
             return employee.getEmployees();
         }
+
+        public List<EmployeeModel> getEmployeesByRegionAndId(String region, string Id)
+        {
+            IPersistenceRetrieveEmployee employee = PersistenceRetrieveEmployeeCreator.createConnection(region);
+
+            return employee.getEmployeeByIdAndRegion(Id);
+        }
     }
 }
 

@@ -12,7 +12,13 @@ namespace KinUsers.Interfaces.Implementations
         public List<EmployeeModel> getEmployees()
         {
             IMongoDatabase dataBase = connectionMongoDB();
-            return MongoAdapter.MapEmployee(dataBase);
+            return MongoAdapter.MapEmployee(dataBase, Id: null);
+        }
+
+        public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
+        {
+            IMongoDatabase dataBase = connectionMongoDB();
+            return MongoAdapter.MapEmployee(dataBase, Id);
         }
 
         private static IMongoDatabase connectionMongoDB()
@@ -21,6 +27,7 @@ namespace KinUsers.Interfaces.Implementations
             var database = client.GetDatabase("userskin");
             return database;
         }
+
     }
 
 }

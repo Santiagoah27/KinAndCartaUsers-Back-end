@@ -14,6 +14,12 @@ namespace KinUsers.Interfaces.Implementations
             return MySqlAdapter.MapEmployee(dataSet);
         }
 
+        public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
+        {
+            DataSet dataSet = connectionMysql($"SELECT * FROM Users WHERE EmployeeId = {Id}");
+            return MySqlAdapter.MapEmployee(dataSet);
+        }
+
         private static DataSet connectionMysql(string query)
         {
             string server = "localhost";
@@ -47,7 +53,6 @@ namespace KinUsers.Interfaces.Implementations
                 connectionBD.Close();
             }
         }
-
     }
 }
 

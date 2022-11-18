@@ -14,13 +14,19 @@ namespace KinUsers.Interfaces.Implementations
 {
     public class PostgresImplementation : IPersistenceRetrieveEmployee
     {
-            public List<EmployeeModel> getEmployees()
-            {
-               DataSet dataSet = connectionPostgres("SELECT * FROM Users"); 
-               return PostgresAdapter.MapEmployee(dataSet);
-            }
+        public List<EmployeeModel> getEmployees()
+        {
+            DataSet dataSet = connectionPostgres("SELECT * FROM Users"); 
+            return PostgresAdapter.MapEmployee(dataSet);
+        }
 
-    private static DataSet connectionPostgres(string query)
+        public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
+        {
+            DataSet dataSet = connectionPostgres($"SELECT * FROM Users WHERE employeeid = {Id}");
+            return PostgresAdapter.MapEmployee(dataSet);
+        }
+
+        private static DataSet connectionPostgres(string query)
     {
             string server = "localhost";
             string bd = "userskin";
@@ -53,6 +59,7 @@ namespace KinUsers.Interfaces.Implementations
                 connectionBD.Close();
             }
         }
+
     }
 }
 
