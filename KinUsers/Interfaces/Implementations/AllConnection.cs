@@ -21,6 +21,11 @@ namespace KinUsers.Interfaces.Implementations
             return employees;
         }
 
+        public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
 

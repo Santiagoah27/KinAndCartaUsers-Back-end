@@ -15,12 +15,18 @@ namespace KinUsers.Interfaces.Implementations
             return MongoAdapter.MapEmployee(dataBase);
         }
 
+        public List<EmployeeModel> getEmployeeByIdAndRegion(string Id)
+        {
+            throw new NotImplementedException();
+        }
+
         private static IMongoDatabase connectionMongoDB()
         {
             var client = new MongoClient("mongodb://localhost:27018");
             var database = client.GetDatabase("userskin");
             return database;
         }
+
     }
 
 }
