@@ -22,6 +22,15 @@ namespace KinUsers.Controllers
             return Service.getEmployeesByRegion(region);
         }
 
+        [HttpGet]
+        [Route("users/{region}/{id}")]
+        public List<EmployeeModel> getEmployeesByRegionAndId(string region, string id)
+        {
+            var Service = new EmployeeRetrieveService();
+            return Service.getEmployeesByRegionAndId(region, id);
+        }
+
+
     }
 }
 

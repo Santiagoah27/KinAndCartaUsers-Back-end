@@ -3,9 +3,9 @@ namespace KinUsers.Models
 {
     public class EmployeeModel
     {
-        public long EmployeeIdentification { get; set; }
+        public int EmployeeId { get; set; }
 
-        public string? Name { get; set; }
+        public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
 
@@ -17,7 +17,7 @@ namespace KinUsers.Models
 
         public string? City { get; set; }
 
-        public int TimeWorking { get; set; }
+        public int TimeWorkingInCompany { get; set; }
     }
 }
 

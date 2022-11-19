@@ -15,6 +15,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="MySqlConnector" Version="2.2.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
+    <PackageReference Include="Npgsql" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,8 @@
     <None Remove="Interfaces\Implementations\" />
     <None Remove="Services\" />
     <None Remove="MongoDB.Driver" />
+    <None Remove="Npgsql" />
+    <None Remove="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -32,5 +35,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Interfaces\Implementations\" />
     <Folder Include="Services\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
 </Project>

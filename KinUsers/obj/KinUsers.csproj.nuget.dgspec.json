@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/santiagosah/Projects/KinUsers/KinUsers/KinUsers.csproj": {}
+    "/Users/santiagosah/Projects/KinUsersBack-end/KinUsers/KinUsers.csproj": {}
   },
   "projects": {
-    "/Users/santiagosah/Projects/KinUsers/KinUsers/KinUsers.csproj": {
+    "/Users/santiagosah/Projects/KinUsersBack-end/KinUsers/KinUsers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/santiagosah/Projects/KinUsers/KinUsers/KinUsers.csproj",
+        "projectUniqueName": "/Users/santiagosah/Projects/KinUsersBack-end/KinUsers/KinUsers.csproj",
         "projectName": "KinUsers",
-        "projectPath": "/Users/santiagosah/Projects/KinUsers/KinUsers/KinUsers.csproj",
+        "projectPath": "/Users/santiagosah/Projects/KinUsersBack-end/KinUsers/KinUsers.csproj",
         "packagesPath": "/Users/santiagosah/.nuget/packages/",
-        "outputPath": "/Users/santiagosah/Projects/KinUsers/KinUsers/obj/",
+        "outputPath": "/Users/santiagosah/Projects/KinUsersBack-end/KinUsers/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/santiagosah/.nuget/NuGet/NuGet.Config"
@@ -50,6 +50,10 @@
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
